@@ -47,6 +47,7 @@ const webpackConfig = {
   // ... 省略其他
   plugins: [new WebpackAliyunOss({
     from: ['./build/**', '!./build/**/*.html'],
+    emptyDirectory: ['./build/static'], //清空的目录
     dist: 'path/in/alioss',
     region: 'your region',
     accessKeyId: 'your key',

@@ -1,6 +1,6 @@
 {
   "name": "webpack3-aliyun-oss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "webpack 3.x aliyun oss plugin",
   "main": "index.js",
   "scripts": {
