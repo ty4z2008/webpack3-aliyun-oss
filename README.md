@@ -92,3 +92,7 @@ new WebpackAliyunOss({
     }
 }).apply(); 
 ```   
+
+##### 感谢 
+
+感谢[webpack-aliyun-oss](https://github.com/gp5251/webpack-aliyun-oss) ，webpack3-aliyun-oss 大部分代码来自于webpack-aliyun-oss , 我只是改成了webpack3支持。另外增加了一些新的特性。移除co
