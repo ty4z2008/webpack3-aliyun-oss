@@ -1,8 +1,8 @@
 
 # webpack3-aliyun-oss
-A webpack( < 4) plugin to upload assets to aliyun oss, you can use it with or without webpack.
+> A webpack( >=3) plugin to upload assets to aliyun oss, you can use it with or without webpack.
 
-一个webpack(< 4)插件，上传资源到阿里云oss。可以作为webpack插件使用，也可独立使用
+> 一个webpack(>=3)插件，上传资源到阿里云oss。可以作为webpack插件使用，也可独立使用
 
 - 默认按output.path (webpack.config.js) 下面的文件路径上传到oss，需要指定上传根目录(dist)。
 - 也可以通过`setOssPath`来配置不同的上传路径。
@@ -95,4 +95,4 @@ new WebpackAliyunOss({
 
 ##### 感谢 
 
-感谢[webpack-aliyun-oss](https://github.com/gp5251/webpack-aliyun-oss) ，webpack3-aliyun-oss 大部分代码来自于webpack-aliyun-oss , 我只是改成了webpack3支持。另外增加了一些新的特性。移除co
+感谢[webpack-aliyun-oss](https://github.com/gp5251/webpack-aliyun-oss) ，webpack3-aliyun-oss 大部分代码来自于webpack-aliyun-oss , 我只是改成了支持webpack3和webpack4。另外增加了一些新的特性、移除co。

@@ -1,7 +1,7 @@
 {
   "name": "webpack3-aliyun-oss",
-  "version": "1.0.1",
-  "description": "webpack 3.x aliyun oss plugin",
+  "version": "1.1.0",
+  "description": "webpack 3.x and 4.x aliyun oss plugin",
   "main": "index.js",
   "scripts": {
     "test": "none"
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "webpack3",
+    "webpack4",
     "aliyun-oss"
   ],
   "author": "ty4z2008",
@@ -23,8 +24,5 @@
   "dependencies": {
     "ali-oss": "^6.10.0",
     "globby": "^11.0.1"
-  },
-  "peerDependencies": {
-    "webpack": "^3.6.0"
   }
 }
