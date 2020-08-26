@@ -1,0 +1,30 @@
+{
+  "name": "webpack3-aliyun-oss",
+  "version": "1.0.0",
+  "description": "webpack 3.x aliyun oss plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ty4z2008/webpack3-aliyun-oss.git"
+  },
+  "keywords": [
+    "webpack3",
+    "aliyun-oss"
+  ],
+  "author": "ty4z2008",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ty4z2008/webpack3-aliyun-oss/issues"
+  },
+  "homepage": "https://github.com/ty4z2008/webpack3-aliyun-oss#readme",
+  "dependencies": {
+    "ali-oss": "^6.10.0",
+    "globby": "^11.0.1"
+  },
+  "peerDependencies": {
+    "webpack": "^3.6.0"
+  }
+}
