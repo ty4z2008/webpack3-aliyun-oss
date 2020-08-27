@@ -1,10 +1,10 @@
 /**
  * Aliyun oss plugin
- * Just support webpack version >= 3.0
- * @type {[type]}
+ * support webpack version >= 3.0
  */
 const fs = require('fs')
 const path = require('path')
+const URL = require('url')
 const oss = require('ali-oss')
 const globby = require('globby')
 require('colors')
@@ -51,7 +51,7 @@ module.exports = class WebpackAliyunOss {
 		if (typeof callback != 'function') callback = Promise.resolve
 		if (this.configErrStr) {
 			compilation.errors.push(new Error(this.configErrStr))
-			return callback()
+			return callback([])
 		}
 
 		const outputPath = path.resolve(this.slash(compiler.options.output.path))
@@ -62,11 +62,13 @@ module.exports = class WebpackAliyunOss {
 
 		const files = await globby(from)
 		if (files.length) {
-			await this.upload(files, true, outputPath)
+			let result = await this.upload(files, true, outputPath)
+			callback(result)
 		} else {
 			verbose && console.log('no files to be uploaded')
+			callback([])
 		}
-		return callback()
+		
 	}
 
 	async doWidthoutWebpack() {
@@ -119,8 +121,9 @@ module.exports = class WebpackAliyunOss {
 			'/' + path.resolve(buildRoot).split('/').slice(-2).join('/') + '/'
 
 		let cloneFiles = files.slice.call(files)
+		let uploadUrlResult = new Set()
 
-		async function toUpload() {
+		const toUpload = async ()=>{
 			let filePath, i = 0,
 				len = files.length
 			while (i++ < len) {
@@ -139,7 +142,7 @@ module.exports = class WebpackAliyunOss {
 				})
 
 				result.url = o.normalize(result.url)
-
+				uploadUrlResult.add(result.url)
 				verbose && console.log(filePath.blue, '\nupload to ' + ossFilePath + ' success,'.green, 'cdn url =>', result.url.green)
 
 				if (deleteOrigin) {
@@ -158,7 +161,7 @@ module.exports = class WebpackAliyunOss {
 					this.deleteFolderRecursive(path.resolve(directory))
 				}
 			}
-			return cloneFiles
+			return Array.from(uploadUrlResult)
 		} catch (err) {
 			console.log(`failed to upload to ali oss: ${err.name}-${err.code}: ${err.message}`.red)
 			return null
@@ -175,13 +178,18 @@ module.exports = class WebpackAliyunOss {
 		}
 		const {
 			domain,
-			region,
-			bucket
 		} = this.config
 		if (domain) {
-			url = url.replace(bucket + '.' + region + '.aliyuncs.com', domain)
+			let originUrl = URL.parse(url)
+			let domainUrl = URL.parse(domain)
+			url = URL.format({
+				...originUrl,
+				protocol:domainUrl.protocol||originUrl.protocol||'http',
+				host:domainUrl.host||originUrl.host,
+				hostname:domainUrl.hostname||originUrl.hostname,
+				
+			})
 		}
-
 		return url
 	}
 	deleteFolderRecursive(delPath) {

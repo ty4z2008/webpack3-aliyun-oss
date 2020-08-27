@@ -23,6 +23,7 @@ Options
 - `dist`: 上传到oss哪个目录下，默认为oss根目录。可作为路径前缀使用。
 - `region`: 阿里云上传区域
 - `emptyDirectory`: 上传完后清空目录
+- `domain`：输入的URL为CDN域名组合的URL
 - `accessKeyId`: 阿里云的授权accessKeyId
 - `accessKeySecret`: 阿里云的授权accessKeySecret
 - `bucket`: 上传到哪个bucket
@@ -49,6 +50,7 @@ const webpackConfig = {
     from: ['./build/**', '!./build/**/*.html'],
     emptyDirectory: ['./build/static'], //清空的目录
     dist: 'path/in/alioss',
+    domain: 'your cdn domain', //  st.example.com or https://cdn.example.com
     region: 'your region',
     accessKeyId: 'your key',
     accessKeySecret: 'your secret',
@@ -75,6 +77,7 @@ new WebpackAliyunOss({
     from: ['./build/**', '!./build/**/*.html'],
     emptyDirectory: ['./build/static'], //清空的目录
     dist: 'path/in/alioss', // oss 前缀
+    domain: 'your cdn domain',
     buildRoot: 'build', // 构建目录，如果已传setOssPath，可忽略
     region: 'your region',
     accessKeyId: 'your key',
