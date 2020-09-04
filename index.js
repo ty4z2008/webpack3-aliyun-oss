@@ -48,7 +48,10 @@ module.exports = class WebpackAliyunOss {
 
 	}
 	async dispatchWithWebpack(compiler, compilation, callback) {
-		if (typeof callback != 'function') callback = Promise.resolve
+		if (typeof callback != 'function') callback = (cb)=>{
+			let resolve = Promise.resolve
+			return resolve.call(Promise,cb)
+		}
 		if (this.configErrStr) {
 			compilation.errors.push(new Error(this.configErrStr))
 			return callback([])
