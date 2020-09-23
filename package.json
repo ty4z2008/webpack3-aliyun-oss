@@ -1,6 +1,6 @@
 {
   "name": "webpack3-aliyun-oss",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "webpack 3.x and 4.x aliyun oss plugin",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ty4z2008/webpack3-aliyun-oss#readme",
   "dependencies": {
     "ali-oss": "^6.10.0",
+    "colors": "^1.4.0",
     "globby": "^11.0.1"
   }
 }
